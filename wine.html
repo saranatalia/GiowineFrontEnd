@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Giowine > Wine</title>
+
+     <!-- Exeternal CSS -->
+     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+     <link href='http://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet' type='text/css'>
+     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+     <link href="css/bootstrap.css" rel="stylesheet">
+     <link rel="stylesheet" href="css/leaflet.awesome-markers.css">
+     <script src="js/leaflet.awesome-markers.js"></script>
+     <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+     <link href="css/main.css" rel="stylesheet">
+
+
+  </head>
+
+  <body id="winebody">
+
+   <header>
+
+
+
+
+  <!-- Navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+           <ul class="nav navbar-nav navbar-left">
+             <li class="logo"><a class="navbar-brand" href="index.html"><img src="images/vrais_logo.png"></a></li>
+             <li id="italianlink">The Italian link to the Americas <span class="glyphicon glyphicon-globe" aria-hidden="true"></li>
+          </ul>
+        </div>
+
+
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right"> <!--here-->
+           <li class="active"><a href="wine.html"><span class="glyphicon glyphicon-glass" aria-hidden="true"></span> Products</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> News & Events</a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">In the Press</a></li>
+                <li><a href="#">What's New</a></li>
+                <li><a href="#">Calendar</a></li>
+              </ul>
+            </li>
+            <li><a href="contact.html"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> Contact </a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Español </a></li>
+          </ul>
+
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+ </header>
+
+<div class="try">
+</div>
+
+
+<!-- /TRYING -->
+<div class="bg" data-zero="background" data-fivehundred="background-position:50%">
+</div>
+
+
+
+<br>
+<br>
+  <div class="jumbotron">
+    <div class="blurb">
+    <div class="row">
+    <div class="col-md-5">
+      <div class="container">
+        <div class="row">
+
+        <h2>wine <span class="glyphicon glyphicon-glass" aria-hidden="true"></h2>
+          <hr>
+
+        <div class="row">
+          <div class="col-md-12">
+          <p>We work with a “one region, one wine” philosophy: for each region of Italy we represent and are dedicated to one producer (two maximum) that each add an element of diversity to the small but rich portfolio of brands we promote.</p>
+          </div>
+        </div>
+        <br>
+        <div class="row font">
+          <div class="col-md-5">
+              <p class="bold">Planeta</p>
+              <p class="bold">Batasiolo</p>
+              <p class="bold">Mazzei</p>
+              <p class="bold">Lazzaroni</p>
+              <p class="bold">Riunite</p>
+              <p class="bold">Fantinel</p>
+              <p class="bold">Vesevo</p>
+           </div>
+           <div class="col-md-7">
+              <p class="bold">Maschio</p>
+              <p class="bold">Masi</p>
+              <p class="bold">Farnese</p>
+              <p class="bold">Cecchi</p>
+              <p class="bold">Casanova di Neri</p>
+              <p class="bold">Casale del Giglio</p>
+              <p class="bold">La Roncaia</p>
+           </div>
+         </div><!--/endrow-->
+
+
+        </div>
+
+<br>
+        <div class="row">
+        <h2>food <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></h2>
+        <hr>
+        <p>Because a number of these wine suppliers make other kinds of products, in XXXX, we also began to promote certain foods. Today, we even represent products that are not affiliated with our wine suppliers.</p>
+        <br>
+        <div class="row font">
+       
+        <p>Amaretti del Chiostro </p>
+         <p>Planeta Olive Oil</p>
+         <p>Rustichella Pasta Artigianale</p>
+         <p>Ferrarelle Mineral Water</p>
+        
+         </div><!--/endrow-->
+
+        </div>
+
+
+      </div>
+    </div>
+    <div class="col-md-7">
+    <div id="map2">
+      <script>
+  var map = L.map('map2', {
+    center: [41.7924601, 12.5736108],
+    zoom: 6,
+    minZoom: 6,
+    maxZoom: 6,
+     scrollWheelZoom: false,
+     doubleClickZoom: false,
+     dragging: false,
+     touchZoom: false,
+     zoomControl: false
+  });
+
+  var Stamen_Watercolor = L.tileLayer('http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png', {
+    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    subdomains: 'abcd',
+    minZoom: 1,
+    maxZoom: 16
+  }).addTo(map);
+
+
+  // PLANETA
+   var marker = L.AwesomeMarkers.icon({
+    icon: 'glyphicon glyphicon-glass',
+    markerColor: 'darkpurple',
+    iconColor: 'white',
+    extraClasses: 'planeta'
+  });
+
+  L.marker([37.8816289,15.1218875], {icon: marker}).addTo(map);
+  $('.planeta').on('click', function toggleContent() {
+    $('#myModal').modal('toggle');
+  });
+
+  // $('.planeta').on('mouseover', function(){$('.planeta').bindPopup('HI').openPopup();});
+
+  //  $('.planeta').on('mouseout', function(){$('.planeta').closePopup();});
+
+
+  // BATASIOLO
+ var marker = L.AwesomeMarkers.icon({
+    icon: 'glyphicon glyphicon-glass',
+    markerColor: 'darkpurple',
+    iconColor: 'white',
+    extraClasses: 'batasiolo'
+  });
+
+  L.marker([44.6376169,7.9421806], {icon: marker}).addTo(map);
+  $('.batasiolo').on('click', function toggleContent() {
+    $('#myModal2').modal('toggle');
+  });
+
+
+
+  // MASCHIO
+   var marker = L.AwesomeMarkers.icon({
+    icon: 'glyphicon glyphicon-glass',
+    markerColor: 'darkpurple',
+    iconColor: 'white',
+    extraClasses: 'maschio'
+  });
+
+  L.marker([44.773463,10.513811], {icon: marker}).addTo(map);
+  $('.maschio').on('click', function toggleContent() {
+    $('#myModal3').modal('toggle');
+  });
+
+
+   // MAZZEI
+   var marker = L.AwesomeMarkers.icon({
+    icon: 'glyphicon glyphicon-glass',
+    markerColor: 'darkpurple',
+    iconColor: 'white',
+    extraClasses: 'mazzei'
+  });
+
+  L.marker([43.435532,11.306296], {icon: marker}).addTo(map);
+  $('.mazzei').on('click', function toggleContent() {
+    $('#myModal4').modal('toggle');
+  });
+
+
+ // FARNESE
+   var marker = L.AwesomeMarkers.icon({
+    icon: 'glyphicon glyphicon-glass',
+    markerColor: 'darkpurple',
+    iconColor: 'white',
+    extraClasses: 'farnese'
+  });
+
+  L.marker([42.352734,14.201073], {icon: marker}).addTo(map);
+  $('.farnese').on('click', function toggleContent() {
+    $('#myModal5').modal('toggle');
+  });
+
+ // FANTINEL
+  var marker = L.AwesomeMarkers.icon({
+    icon: 'glyphicon glyphicon-glass',
+    markerColor: 'darkpurple',
+    iconColor: 'white',
+    extraClasses: 'fantinel'
+  });
+
+  L.marker([46.106565,12.836795], {icon: marker}).addTo(map);
+  $('.fantinel').on('click', function toggleContent() {
+    $('#myModal6').modal('toggle');
+  });
+
+ // RIUNITE
+  var marker = L.AwesomeMarkers.icon({
+    icon: 'glyphicon glyphicon-glass',
+    markerColor: 'darkpurple',
+    iconColor: 'white',
+    extraClasses: 'riunite'
+  });
+
+  L.marker([45.214193,11.284391], {icon: marker}).addTo(map);
+  $('.riunite').on('click', function toggleContent() {
+    $('#myModal7').modal('toggle');
+  });
+
+
+   // CASANOVA DI NERI
+    var marker = L.AwesomeMarkers.icon({
+    icon: 'glyphicon glyphicon-glass',
+    markerColor: 'darkpurple',
+    iconColor: 'white',
+    extraClasses: 'casanova'
+  });
+
+  L.marker([43.057149,11.5219], {icon: marker}).addTo(map);
+  $('.casanova').on('click', function toggleContent() {
+    $('#myModal8').modal('toggle');
+  });
+
+
+  // MASI
+   var marker = L.AwesomeMarkers.icon({
+    icon: 'glyphicon glyphicon-glass',
+    markerColor: 'darkpurple',
+    iconColor: 'white',
+    extraClasses: 'masi'
+  });
+
+  L.marker([45.523359,10.863783], {icon: marker}).addTo(map);
+  $('.masi').on('click', function toggleContent() {
+    $('#myModal9').modal('toggle');
+  });
+
+
+  // LAZZARONI
+   var marker = L.AwesomeMarkers.icon({
+    icon: 'glyphicon glyphicon-glass',
+    markerColor: 'darkpurple',
+    iconColor: 'white',
+    extraClasses: 'lazzaroni'
+  });
+
+  L.marker([45.4015845,9.059264], {icon: marker}).addTo(map);
+  $('.lazzaroni').on('click', function toggleContent() {
+    $('#myModal10').modal('toggle');
+  });
+
+  // CASALE DEL GIGLIO
+   var marker = L.AwesomeMarkers.icon({
+    icon: 'glyphicon glyphicon-glass',
+    markerColor: 'darkpurple',
+    iconColor: 'white',
+    extraClasses: 'casale'
+  });
+
+  L.marker([41.880312,12.486956], {icon: marker}).addTo(map);
+  $('.casale').on('click', function toggleContent() {
+    $('#myModal11').modal('toggle');
+  });
+
+  // CECCHI
+  var marker = L.AwesomeMarkers.icon({
+    icon: 'glyphicon glyphicon-glass',
+    markerColor: 'darkpurple',
+    iconColor: 'white',
+    extraClasses: 'cecchi'
+  });
+
+  L.marker([43.863751,10.248668], {icon: marker}).addTo(map);
+  $('.cecchi').on('click', function toggleContent() {
+    $('#myModal12').modal('toggle');
+  });
+
+  // VESEVO
+   var marker = L.AwesomeMarkers.icon({
+    icon: 'glyphicon glyphicon-glass',
+    markerColor: 'darkpurple',
+    iconColor: 'white',
+    extraClasses: 'vesevo'
+  });
+
+  L.marker([40.861278,14.737792], {icon: marker}).addTo(map);
+  $('.vesevo').on('click', function toggleContent() {
+    $('#myModal13').modal('toggle');
+  });
+
+  //  LA RONCAIA
+     var marker = L.AwesomeMarkers.icon({
+    icon: 'glyphicon glyphicon-glass',
+    markerColor: 'darkpurple',
+    iconColor: 'white',
+    extraClasses: 'roncaia'
+  });
+
+  L.marker([46.210658,13.303138], {icon: marker}).addTo(map);
+  $('.roncaia').on('click', function toggleContent() {
+    $('#myModal16').modal('toggle');
+  });
+
+
+  // FOOD FOOD FOOD //
+  // RUSTICHELLA //
+var marker = L.AwesomeMarkers.icon({
+    icon: 'glyphicon glyphicon-cutlery',
+    markerColor: 'green',
+    iconColor: 'white',
+    extraClasses: 'rustichella'
+  });
+
+  L.marker([42.396833,13.56532], {icon: marker}).addTo(map);
+  $('.rustichella').on('click', function toggleContent() {
+    $('#myModal14').modal('toggle');
+  });
+
+  // FERRARELLE //
+  var marker = L.AwesomeMarkers.icon({
+    icon: 'glyphicon glyphicon-cutlery',
+    markerColor: 'green',
+    iconColor: 'white',
+    extraClasses: 'ferrarelle'
+  });
+
+  L.marker([41.26142,14.1498185], {icon: marker}).addTo(map);
+  $('.ferrarelle').on('click', function toggleContent() {
+    $('#myModal15').modal('toggle');
+  });
+
+ // AMARETTI LAZZARONI //
+  var marker = L.AwesomeMarkers.icon({
+    icon: 'glyphicon glyphicon-cutlery',
+    markerColor: 'green',
+    iconColor: 'white',
+    extraClasses: 'amaretti'
+  });
+
+  L.marker([45.6867005,8.9315245], {icon: marker}).addTo(map);
+  $('.amaretti').on('click', function toggleContent() {
+    $('#myModal17').modal('toggle');
+  });
+
+   // OLIO PLANETA //
+  var marker = L.AwesomeMarkers.icon({
+    icon: 'glyphicon glyphicon-cutlery',
+    markerColor: 'green',
+    iconColor: 'white',
+    extraClasses: 'olio'
+  });
+
+  L.marker([37.6042748,12.9660447], {icon: marker}).addTo(map);
+  $('.olio').on('click', function toggleContent() {
+    $('#myModal18').modal('toggle');
+  });
+
+
+
+// marker.on('mouseover', function() {
+//   var icon = marker._icon;
+//   $(icon).addClass('animated pulse');
+//   $(icon).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+//     $(icon).removeClass('animated pulse');
+//   });
+// });
+
+
+
+</script>
+          </div><!-- /MAP-->
+
+  </div>
+
+
+  <!--Modals-->
+
+  <!--PLANETA-->
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">PLANETA</h4>
+      </div>
+      <div class="modal-body">
+        <img src="images/winery/planeta.jpg" alt="Planeta Winery">
+        <p class="caption">A bottle of Planeta Chardonny ready for tasting | Region: Sicilia</p>
+         
+         <blockquote><p>Planeta represents not just one, but six ways of developing the territory, in six different settings between Sambuca di Sicilia and Menfi: there are six Planeta wine producing estates, each one with a specific research and development project.</p></blockquote>
+      </div>
+      <div class="modal-footer">
+      <a href="http://www.planeta.it" target="_blank"><button type="button" class="btn btn-default">View Website</button></a>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--BATASIOLO-->
+
+  <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">BATASIOLO</h4>
+      </div>
+      <div class="modal-body">
+      <img src="images/winery/harvest.jpg" alt="Batasiolo Winery"> 
+        <p class="caption">Harvest time at the Batasiolo vineyards | Region: Piemonte</p>
+
+        <blockquote><p>In the old local dialect the word 'beni' means a property or estate, and it is this idea of the unbreakable bond existing between the farmer and his vineyard which is encapsulated in the name 'Beni di Batasiolo.' </p></blockquote>
+      </div>
+      <div class="modal-footer">
+      <img src="images/brands/batasiolo.png" alt="Batasiolo logo">
+      <a href="http://www.batasiolo.com/" target="_blank"><button type="button" class="btn btn-default">View Website</button></a>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--MASCHIO-->
+
+  <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">MASCHIO</h4>
+      </div>
+      <div class="modal-body">
+        <iframe width="100%" height="375" src="https://www.youtube.com/embed/vd-MMShhxRs" frameborder="0" allowfullscreen></iframe>
+         <p class="caption">Maschio's 2012 commercial for their Pinot Rosa wine, giving tasters a "sparkling moment" | Region: Veneto</p>
+        <blockquote><p>These are products that satisfy even the most demanding palates at the most particular moments. For over 40 years Maschio has been a synonym of quality and a guarantee of success.  </p></blockquote>
+      </div>
+      <div class="modal-footer">
+      <a href="http://www.cantinemaschio.it/en" target="_blank"><button type="button" class="btn btn-default">View Website</button></a>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--MAZZEI-->
+
+  <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">MAZZEI</h4>
+      </div>
+      <div class="modal-body">
+      <img src="images/winery/mazzei.jpg" alt="Mazzei Winery">
+       <p class="caption">The Mazzei vineyards are visible from the village of Gelso | Region: Toscana</p>
+        <blockquote><p>Today, after almost <strong>six centuries</strong>, the Mazzei family still devotes itself to winemaking, with constant commitment, an eye towards innovation, and an abiding respect for the land.</p></blockquote>
+      </div>
+      <div class="modal-footer">
+      <a href="http://www.mazzei.it/eng_intro/no_intro:1/" target="_blank"><button type="button" class="btn btn-default">View Website</button></a>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--FARNESE-->
+
+  <div class="modal fade" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">FARNESE</h4>
+      </div>
+      <div class="modal-body">
+        <img src="images/winery/farnese.jpg" alt="Farnese Winery">
+         <p class="caption">The Farnese vineyard is located in the beautiful Cupa valley | Region: Abruzzo</p>
+        <blockquote><p>The wines from Abruzzo became famous worldwide in the 16th century, thanks to Princess Margaret of Austria and Prince Farnese, who began producing high quality wines which were enjoyed at feasts throughout Europe. The Farnese group carry on this reputation and tradition with advanced programs of production and marketing.</p></blockquote>
+      </div>
+      <div class="modal-footer">
+      <a href="http://www.farnesevini.it/" target="_blank"><button type="button" class="btn btn-default">View Website</button></a>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--FANTINEL-->
+
+  <div class="modal fade" id="myModal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">FANTINEL</h4>
+      </div>
+      <div class="modal-body">
+        <iframe width="100%" height="375" src="https://www.youtube.com/embed/9CgG8egegHA" frameborder="0" allowfullscreen></iframe>
+        <p class="caption">A video made by Fantinel winery: "Feel the Emotion" | Region: Friuli Venezia Giulia</p>
+        <blockquote><p>For over four decades, passion has been the driving force of Fantinel, a group of technicians and professionals who work every day with diligence and enthusiasm to create a range of wines able to offer strong emotions that are imprinted in memory.</p></blockquote>
+      </div>
+      <div class="modal-footer">
+      <a href="http://www.fantinel.com/en/entry.aspx" target="_blank"><button type="button" class="btn btn-default">View Website</button></a>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--RIUNITE-->
+
+  <div class="modal fade" id="myModal7" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">RIUNITE</h4>
+      </div>
+      <div class="modal-body">
+        <img src="images/winery/riunite_3.png" alt="Riunite Winery">
+         <p class="caption">The celebrated Lambrusco grape variety | Region: Emilia Romagna</p>
+        <blockquote><p>Riunite is most closely identified with the Lambrusco grape, a variety native to central Italy. Lambrusco is said to be one of the oldest grapes in history, one that was first vinified by the Etruscans, dating back to before the first century BC. When you are drinking Riunite, you are drinking history.</p></blockquote>
+      </div>
+      <div class="modal-footer">
+      <a href="http://www.riunite.com/" target="_blank"><button type="button" class="btn btn-default">View Website</button></a>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--CASANOVA DI NERI-->
+
+  <div class="modal fade" id="myModal8" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">CASANOVA DI NERI</h4>
+      </div>
+      <div class="modal-body">
+        <img src="images/winery/Cneri_087.jpg" alt="Casanova di Neri Winery">
+         <p class="caption">Harvested grapes ready for vinification | Region: Toscana</p>
+        <blockquote><p>High quality vines, and rigorous, careful work in the cellar have lead to the production of unique wines with great character and well defined styles. </p></blockquote>
+      </div>
+      <div class="modal-footer">
+      <img src="images/brands/casanova.png" alt="Casanova di Neri brand">
+      <a href="http://www.casanovadineri.it/en-index.html" target="_blank"><button type="button" class="btn btn-default">View Website</button></a>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--MASI-->
+
+  <div class="modal fade" id="myModal9" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">MASI</h4>
+      </div>
+      <div class="modal-body">
+      <img src="images/winery/masi.jpg" alt="Appassimento at Masi Winery">
+      <p class="caption">The process of "appassimento" (to dry and shrivel) is used to make Masi's famed Amarone wine | Region: Veneto</p>
+        <blockquote><p>Masi is proud to be a worldwide ambassador of the Venetian culture and values expressed throughout the territory and in their wine.</p></blockquote>
+      </div>
+      <div class="modal-footer">
+      <a href="http://www.masi.it/eng/home/" target="_blank"><button type="button" class="btn btn-default">View Website</button></a>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--LAZZARONI-->
+
+  <div class="modal fade" id="myModal10" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">LAZZARONI</h4>
+      </div>
+      <div class="modal-body">
+        <p class="caption">| Region: Lombardia</p>
+        <blockquote><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></blockquote>
+      </div>
+      <div class="modal-footer">
+      <a href="http://www.lazzaroni.it/" target="_blank"><button type="button" class="btn btn-default">View Website</button></a>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--CASALE DEL GIGLIO-->
+
+  <div class="modal fade" id="myModal11" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">CASALE DEL GIGLIO</h4>
+      </div>
+      <div class="modal-body">
+       <img src="images/winery/cantina.jpeg" alt="Casale del Giglio Winery"> 
+        <p class="caption">The Casale Del Giglio cantina | Region: Lazio</p>
+        <blockquote><p>Unlike other regions of Italy, this territory was still uncharted in viticultural terms when Berardino Santarelli and his son Antonio launched their research project in 1985. To date, Casale del Giglio has converted its 180 hectares selecting those grape varieties which have proved to interact best with the territory and produce the best quality wines.</p></blockquote>
+      </div>
+      <div class="modal-footer">
+      <img src="images/brands/casale.png" alt="Casale Del Giglio Logo"> <a href="http://www.casaledelgiglio.it/en/" target="_blank"><button type="button" class="btn btn-default">View Website</button></a>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--CECCHI-->
+
+  <div class="modal fade" id="myModal12" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">CECCHI</h4>
+      </div>
+      <div class="modal-body">
+       <iframe width="100%" height="375" src="https://www.youtube.com/embed/PzZllyFrxEg" frameborder="0" allowfullscreen></iframe>
+       <p class="caption">A video made by Cecchi winery. Discover "the pure truth of wine" | Region: Toscana</p>    
+        <blockquote><p> Since 1893 the Cecchi family & brand has been synonymous with viticulture, both in Italy and throughout the world. The history of the winery is a compelling story of a family articulated by passion, dedication to the land, and brilliant entrepreneurial spirit. </p></blockquote>
+      </div>
+      <div class="modal-footer">
+      <img src="images/brands/cecchi.png"
+      <a href="http://cecchi.net/?lang=en" target="_blank"><button type="button" class="btn btn-default">View Website</button></a>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--VESEVO-->
+
+  <div class="modal fade" id="myModal13" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">VESEVO</h4>
+      </div>
+      <div class="modal-body">
+        <img src="images/winery/vesevo.jpg" alt="Vesevo Vineyard">
+        <p class="caption">Vines from the Vesevo vineyard, named after the volcano Vesuvio | Region: Campania</p>
+        <blockquote><p>Vesevo's continued research and implementation of modern technologies is reflected in the quality of their wines, which are always obtained with the respect and the full expression of the territory from which they arise.</p></blockquote>
+      </div>
+      <div class="modal-footer">
+      <a href="http://www.farnesevini.it/vesevo_azienda" target="_blank"><button type="button" class="btn btn-default">View Website</button></a>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--FOOD RUSTICHELLA-->
+
+  <div class="modal fade" id="myModal14" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">RUSTICHELLA</h4>
+      </div>
+      <div class="modal-body">
+        <iframe width="100%" height="375" src="https://www.youtube.com/embed/fYmXH4mEk40" frameborder="0" allowfullscreen></iframe>
+        <p class="caption">A video made during Rustichella's 2014 Primograno tour. Chefs from around the world were invited and taught how to craft their renowned artisinal pasta</p>
+        <blockquote><p>Gianluigi and Stefania Peduzzi proudly continue their grandfather's Abruzzan tradition using only top quality durum wheat semolina, bronze dies, and pure mountain water to achieve that perfect texture and taste that made Rustichella d'Abruzzo the most recognized premium pasta, used by top chefs and available in all delicatessen shops of the world.</p></blockquote>
+      </div>
+      <div class="modal-footer">
+      <a href="http://www.rustichella.it/index.php?lang=en" target="_blank"><button type="button" class="btn btn-default">View Website</button></a>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--FOOD FERRARELLE-->
+
+  <div class="modal fade" id="myModal15" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">FERRARELLE</h4>
+      </div>
+      <div class="modal-body">
+        <img src="images/winery/ferrarelle_2.png" alt="Ferrarelle Bottle Picture">
+         <p class="caption">The best way to enjoy a glass of Ferrarelle is with real Italian pizza</p>
+        <blockquote><p>Ferrarelle is Italy's n°1 sparkling water bottled directly at the source since 1893. It springs from an ancient volcanic source, the extinct Roccamonfina volcano. Its natural effervescence, unique sensory profile, and elegant taste make Ferrarelle the perfect complement to the flavors of outstanding cuisine.</p></blockquote>
+      </div>
+      <div class="modal-footer">
+      <a href="http://www.ferrarelle.it/en/home.html" target="_blank"><button type="button" class="btn btn-default">View Website</button></a>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--FOOD AMARETTI DEL CHIOSTRO-->
+
+  <div class="modal fade" id="myModal17" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">AMARETTI DEL CHIOSTRO</h4>
+      </div>
+      <div class="modal-body">
+        <p class="caption"></p>
+        <blockquote><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></blockquote>
+      </div>
+      <div class="modal-footer">
+      <a href="http://www.chiostrodisaronno.it/" target="_blank"><button type="button" class="btn btn-default">View Website</button></a>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--FOOD PLANETA OLIVE OIL-->
+
+  <div class="modal fade" id="myModal18" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">PLANETA OLIVE OIL</h4>
+      </div>
+      <div class="modal-body">
+        <img src="images/winery/planeta_oil_3.jpg" alt="Planeta Olives">
+         <p class="caption">Hand-picked olives at Planeta's Caparrina oil mill</p>
+        <blockquote><p>The Planeta olive grove extends for 98 hectares in the Capparrina district, a natural oasis of great beauty sloping towards the sea. Planeta’s decision to dedicate this land to olives was not random: it was both an ethical and aesthetic choice in order to safeguard the landscape and its nature, to make the most of the land and to create employment.</p></blockquote>
+      </div>
+      <div class="modal-footer">
+      <a href="http://www.planeta.it/en/olio/" target="_blank"><button type="button" class="btn btn-default">View Website</button></a>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--LA RONCAIA-->
+
+  <div class="modal fade" id="myModal16" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">LA RONCAIA</h4>
+      </div>
+      <div class="modal-body">
+        <img src="images/winery/roncaia.jpg" alt="La Roncaia Winery">
+         <p class="caption">La Roncaia's facilities | Region: Friuli Venezia Giulia</p>
+        <blockquote><p>This is a place for contemplation and experience accumulated during the slow passage of the seasons, where each day-to-day act takes on the sacredness of a ritual. Close to the exclusive vineyards in Cergneu di Nimis stands La Roncaia cellar, where life proceeds in complete harmony with the surroundings.</p></blockquote>
+      </div>
+      <div class="modal-footer">
+      <a href="http://laroncaia.it/" target="_blank"><button type="button" class="btn btn-default">View Website</button></a>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+  </div><!-- /column -->
+  </div><!-- /row -->
+  </div><!--/end blurb-->
+</div><!-- /Jumbotron -->
+
+    <!-- Footer -->
+    <footer>
+
+       <p>© Giowine - Giovanni Cardullo Inc 2014. All Rights Reserved. <u><a href="#">For Professionals</a></u></p>
+
+
+    </footer>
+
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/application.js"></script>
+    <script type="text/javascript" src="js/skrollr.js"></script>
+
+
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
