@@ -164,9 +164,25 @@ ul.nav a:focus {
   padding-bottom: 20px;
 }
 
+/*.flexrow {
+  display: -webkit-flex;
+  -webkit-flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  -webkit-justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-align-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}*/
+
+
 .partners .col-sm-3 a {
   display: inline-block;
-
   margin-bottom: 15px;
   text-align: center;
   width: 180px;
@@ -280,6 +296,20 @@ ul.nav a:focus {
   padding-left: 30px;
 }
 
+#contactbody p {
+  margin: -5px;
+  font-size: 17px;
+
+}
+
+#contactbody a {
+  text-decoration: none;
+  color: rgb(228,228,197);
+}
+
+#box {
+  padding-left: 20px;
+}
 
 .contactmain {
   border: 1px solid rgba(141,32,54, 0.9);
@@ -293,23 +323,12 @@ ul.nav a:focus {
 .contact img {
   margin-bottom: 10px;
   width: 100%;
-
 }
 
-#contactbody p {
-  margin: -5px;
-  padding: -5px;
-  font-size: 17px;
-
-}
-
-#contactbody a {
-  text-decoration: none;
-  color: rgb(228,228,197);
-}
-
-#box {
-  padding-left: 20px;
+#contactbody .contact p {
+  text-align: center;
+  margin: 0px 10px;
+  padding: 0px;
 }
 
 
