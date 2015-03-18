@@ -15,6 +15,7 @@
      <link href="css/bootstrap.css" rel="stylesheet">
      <link rel="stylesheet" href="css/leaflet.awesome-markers.css">
      <script src="js/leaflet.awesome-markers.js"></script>
+     <script src="js/underscore-min.js"></script>
      <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
@@ -100,24 +101,24 @@
           </div>
         </div>
         <br>
-        <div class="row font">
+        <div id="food_and_wine" class="row font">
           <div class="col-md-5">
-              <p class="bold">Planeta</p>
-              <p class="bold">Batasiolo</p>
-              <p class="bold">Mazzei</p>
-              <p class="bold">Lazzaroni</p>
-              <p class="bold">Riunite</p>
-              <p class="bold">Fantinel</p>
-              <p class="bold">Vesevo</p>
+              <p class="bold" data-name="planeta" >Planeta</p>
+              <p class="bold" data-name="batasiolo" >Batasiolo</p>
+              <p class="bold" data-name="Mazzei" >Mazzei</p>
+              <p class="bold" data-name="Lazzaroni" >Lazzaroni</p>
+              <p class="bold" data-name="Riunite" >Riunite</p>
+              <p class="bold" data-name="Fantinel" >Fantinel</p>
+              <p class="bold" data-name="Vesevo" >Vesevo</p>
            </div>
            <div class="col-md-7">
-              <p class="bold">Maschio</p>
-              <p class="bold">Masi</p>
-              <p class="bold">Farnese</p>
-              <p class="bold">Cecchi</p>
-              <p class="bold">Casanova di Neri</p>
-              <p class="bold">Casale del Giglio</p>
-              <p class="bold">La Roncaia</p>
+              <p class="bold" data-name="Maschio" >Maschio</p>
+              <p class="bold" data-name="Masi" >Masi</p>
+              <p class="bold" data-name="Farnese" >Farnese</p>
+              <p class="bold" data-name="Cecchi" >Cecchi</p>
+              <p class="bold" data-name="Casanova di Neri" >Casanova di Neri</p>
+              <p class="bold" data-name="Casale del Giglio" >Casale del Giglio</p>
+              <p class="bold" data-name="La Roncaia" >La Roncaia</p>
            </div>
          </div><!--/endrow-->
 
@@ -131,12 +132,12 @@
         <p>Because a number of these wine suppliers make other kinds of products, in XXXX, we also began to promote certain foods. Today, we even represent products that are not affiliated with our wine suppliers.</p>
         <br>
         <div class="row font">
-       
+
         <p>Amaretti del Chiostro </p>
          <p>Planeta Olive Oil</p>
          <p>Rustichella Pasta Artigianale</p>
          <p>Ferrarelle Mineral Water</p>
-        
+
          </div><!--/endrow-->
 
         </div>
@@ -147,288 +148,66 @@
     <div class="col-md-7">
     <div id="map2">
       <script>
-  var map = L.map('map2', {
-    center: [41.7924601, 12.5736108],
-    zoom: 6,
-    minZoom: 6,
-    maxZoom: 6,
-     scrollWheelZoom: false,
-     doubleClickZoom: false,
-     dragging: false,
-     touchZoom: false,
-     zoomControl: false
-  });
+        var map = L.map('map2', {
+          center: [41.7924601, 12.5736108],
+          zoom: 6,
+          minZoom: 6,
+          maxZoom: 6,
+           scrollWheelZoom: false,
+           doubleClickZoom: false,
+           dragging: false,
+           touchZoom: false,
+           zoomControl: false
+        });
 
-  var Stamen_Watercolor = L.tileLayer('http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png', {
-    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    subdomains: 'abcd',
-    minZoom: 1,
-    maxZoom: 16
-  }).addTo(map);
-
-
-  // PLANETA
-   var marker = L.AwesomeMarkers.icon({
-    icon: 'glyphicon glyphicon-glass',
-    markerColor: 'darkpurple',
-    iconColor: 'white',
-    extraClasses: 'planeta'
-  });
-
-  L.marker([37.8816289,15.1218875], {icon: marker}).addTo(map);
-  $('.planeta').on('click', function toggleContent() {
-    $('#myModal').modal('toggle');
-  });
-
-  // $('.planeta').on('mouseover', function(){$('.planeta').bindPopup('HI').openPopup();});
-
-  //  $('.planeta').on('mouseout', function(){$('.planeta').closePopup();});
+        var Stamen_Watercolor = L.tileLayer('http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png', {
+          attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+          subdomains: 'abcd',
+          minZoom: 1,
+          maxZoom: 16
+        }).addTo(map);
 
 
-  // BATASIOLO
- var marker = L.AwesomeMarkers.icon({
-    icon: 'glyphicon glyphicon-glass',
-    markerColor: 'darkpurple',
-    iconColor: 'white',
-    extraClasses: 'batasiolo'
-  });
+        var markers_data = {
+          planeta:      {name: 'planeta',     coord:[37.8816289,15.1218875],  modal:'#myModal',   icon:{type:'glyphicon-glass',   color:'darkpurple', marker:null}},
+          batasiolo:    {name: 'batasiolo',   coord:[44.6376169,7.9421806],   modal:'#myModal2',  icon:{type:'glyphicon-glass',   color:'darkpurple', marker:null}},
+          maschio:      {name: 'maschio',     coord:[44.773463,10.513811],    modal:'#myModal3',  icon:{type:'glyphicon-glass',   color:'darkpurple', marker:null}},
+          mazzei:       {name: 'mazzei',      coord:[43.435532,11.306296],    modal:'#myModal4',  icon:{type:'glyphicon-glass',   color:'darkpurple', marker:null}},
+          farnese:      {name: 'farnese',     coord:[42.352734,14.201073],    modal:'#myModal5',  icon:{type:'glyphicon-glass',   color:'darkpurple', marker:null}},
+          fantinel:     {name: 'fantinel',    coord:[46.106565,12.836795],    modal:'#myModal6',  icon:{type:'glyphicon-glass',   color:'darkpurple', marker:null}},
+          riunite:      {name: 'riunite',     coord:[45.214193,11.284391],    modal:'#myModal7',  icon:{type:'glyphicon-glass',   color:'darkpurple', marker:null}},
+          casanova:     {name: 'casanova',    coord:[43.057149,11.5219],      modal:'#myModal8',  icon:{type:'glyphicon-glass',   color:'darkpurple', marker:null}},
+          masi:         {name: 'masi',        coord:[45.523359,10.863783],    modal:'#myModal9',  icon:{type:'glyphicon-glass',   color:'darkpurple', marker:null}},
+          lazzaroni:    {name: 'lazzaroni',   coord:[45.4015845,9.059264],    modal:'#myModal10', icon:{type:'glyphicon-glass',   color:'darkpurple', marker:null}},
+          casale:       {name: 'casale',      coord:[41.880312,12.486956],    modal:'#myModal11', icon:{type:'glyphicon-glass',   color:'darkpurple', marker:null}},
+          cecchi:       {name: 'cecchi',      coord:[43.863751,10.248668],    modal:'#myModal12', icon:{type:'glyphicon-glass',   color:'darkpurple', marker:null}},
+          vesevo:       {name: 'vesevo',      coord:[40.861278,14.737792],    modal:'#myModal13', icon:{type:'glyphicon-glass',   color:'darkpurple', marker:null}},
+          roncaia:      {name: 'roncaia',     coord:[46.210658,13.303138],    modal:'#myModal14', icon:{type:'glyphicon-glass',   color:'darkpurple', marker:null}},
+          rustichella:  {name: 'rustichella', coord:[42.396833,13.56532],     modal:'#myModal15', icon:{type:'glyphicon-cutlery', color:'green',      marker:null}},
+          ferrarelle:   {name: 'ferrarelle',  coord:[41.26142,14.1498185],    modal:'#myModal16', icon:{type:'glyphicon-cutlery', color:'green',      marker:null}},
+          amaretti:     {name: 'amaretti',    coord:[45.6867005,8.9315245],   modal:'#myModal17', icon:{type:'glyphicon-cutlery', color:'green',      marker:null}},
+          olio:         {name: 'olio',        coord:[37.6042748,12.9660447],  modal:'#myModal18', icon:{type:'glyphicon-cutlery', color:'green',      marker:null}}
+        };
 
-  L.marker([44.6376169,7.9421806], {icon: marker}).addTo(map);
-  $('.batasiolo').on('click', function toggleContent() {
-    $('#myModal2').modal('toggle');
-  });
-
-
-
-  // MASCHIO
-   var marker = L.AwesomeMarkers.icon({
-    icon: 'glyphicon glyphicon-glass',
-    markerColor: 'darkpurple',
-    iconColor: 'white',
-    extraClasses: 'maschio'
-  });
-
-  L.marker([44.773463,10.513811], {icon: marker}).addTo(map);
-  $('.maschio').on('click', function toggleContent() {
-    $('#myModal3').modal('toggle');
-  });
-
-
-   // MAZZEI
-   var marker = L.AwesomeMarkers.icon({
-    icon: 'glyphicon glyphicon-glass',
-    markerColor: 'darkpurple',
-    iconColor: 'white',
-    extraClasses: 'mazzei'
-  });
-
-  L.marker([43.435532,11.306296], {icon: marker}).addTo(map);
-  $('.mazzei').on('click', function toggleContent() {
-    $('#myModal4').modal('toggle');
-  });
-
-
- // FARNESE
-   var marker = L.AwesomeMarkers.icon({
-    icon: 'glyphicon glyphicon-glass',
-    markerColor: 'darkpurple',
-    iconColor: 'white',
-    extraClasses: 'farnese'
-  });
-
-  L.marker([42.352734,14.201073], {icon: marker}).addTo(map);
-  $('.farnese').on('click', function toggleContent() {
-    $('#myModal5').modal('toggle');
-  });
-
- // FANTINEL
-  var marker = L.AwesomeMarkers.icon({
-    icon: 'glyphicon glyphicon-glass',
-    markerColor: 'darkpurple',
-    iconColor: 'white',
-    extraClasses: 'fantinel'
-  });
-
-  L.marker([46.106565,12.836795], {icon: marker}).addTo(map);
-  $('.fantinel').on('click', function toggleContent() {
-    $('#myModal6').modal('toggle');
-  });
-
- // RIUNITE
-  var marker = L.AwesomeMarkers.icon({
-    icon: 'glyphicon glyphicon-glass',
-    markerColor: 'darkpurple',
-    iconColor: 'white',
-    extraClasses: 'riunite'
-  });
-
-  L.marker([45.214193,11.284391], {icon: marker}).addTo(map);
-  $('.riunite').on('click', function toggleContent() {
-    $('#myModal7').modal('toggle');
-  });
-
-
-   // CASANOVA DI NERI
-    var marker = L.AwesomeMarkers.icon({
-    icon: 'glyphicon glyphicon-glass',
-    markerColor: 'darkpurple',
-    iconColor: 'white',
-    extraClasses: 'casanova'
-  });
-
-  L.marker([43.057149,11.5219], {icon: marker}).addTo(map);
-  $('.casanova').on('click', function toggleContent() {
-    $('#myModal8').modal('toggle');
-  });
-
-
-  // MASI
-   var marker = L.AwesomeMarkers.icon({
-    icon: 'glyphicon glyphicon-glass',
-    markerColor: 'darkpurple',
-    iconColor: 'white',
-    extraClasses: 'masi'
-  });
-
-  L.marker([45.523359,10.863783], {icon: marker}).addTo(map);
-  $('.masi').on('click', function toggleContent() {
-    $('#myModal9').modal('toggle');
-  });
-
-
-  // LAZZARONI
-   var marker = L.AwesomeMarkers.icon({
-    icon: 'glyphicon glyphicon-glass',
-    markerColor: 'darkpurple',
-    iconColor: 'white',
-    extraClasses: 'lazzaroni'
-  });
-
-  L.marker([45.4015845,9.059264], {icon: marker}).addTo(map);
-  $('.lazzaroni').on('click', function toggleContent() {
-    $('#myModal10').modal('toggle');
-  });
-
-  // CASALE DEL GIGLIO
-   var marker = L.AwesomeMarkers.icon({
-    icon: 'glyphicon glyphicon-glass',
-    markerColor: 'darkpurple',
-    iconColor: 'white',
-    extraClasses: 'casale'
-  });
-
-  L.marker([41.880312,12.486956], {icon: marker}).addTo(map);
-  $('.casale').on('click', function toggleContent() {
-    $('#myModal11').modal('toggle');
-  });
-
-  // CECCHI
-  var marker = L.AwesomeMarkers.icon({
-    icon: 'glyphicon glyphicon-glass',
-    markerColor: 'darkpurple',
-    iconColor: 'white',
-    extraClasses: 'cecchi'
-  });
-
-  L.marker([43.863751,10.248668], {icon: marker}).addTo(map);
-  $('.cecchi').on('click', function toggleContent() {
-    $('#myModal12').modal('toggle');
-  });
-
-  // VESEVO
-   var marker = L.AwesomeMarkers.icon({
-    icon: 'glyphicon glyphicon-glass',
-    markerColor: 'darkpurple',
-    iconColor: 'white',
-    extraClasses: 'vesevo'
-  });
-
-  L.marker([40.861278,14.737792], {icon: marker}).addTo(map);
-  $('.vesevo').on('click', function toggleContent() {
-    $('#myModal13').modal('toggle');
-  });
-
-  //  LA RONCAIA
-     var marker = L.AwesomeMarkers.icon({
-    icon: 'glyphicon glyphicon-glass',
-    markerColor: 'darkpurple',
-    iconColor: 'white',
-    extraClasses: 'roncaia'
-  });
-
-  L.marker([46.210658,13.303138], {icon: marker}).addTo(map);
-  $('.roncaia').on('click', function toggleContent() {
-    $('#myModal16').modal('toggle');
-  });
-
-
-  // FOOD FOOD FOOD //
-  // RUSTICHELLA //
-var marker = L.AwesomeMarkers.icon({
-    icon: 'glyphicon glyphicon-cutlery',
-    markerColor: 'green',
-    iconColor: 'white',
-    extraClasses: 'rustichella'
-  });
-
-  L.marker([42.396833,13.56532], {icon: marker}).addTo(map);
-  $('.rustichella').on('click', function toggleContent() {
-    $('#myModal14').modal('toggle');
-  });
-
-  // FERRARELLE //
-  var marker = L.AwesomeMarkers.icon({
-    icon: 'glyphicon glyphicon-cutlery',
-    markerColor: 'green',
-    iconColor: 'white',
-    extraClasses: 'ferrarelle'
-  });
-
-  L.marker([41.26142,14.1498185], {icon: marker}).addTo(map);
-  $('.ferrarelle').on('click', function toggleContent() {
-    $('#myModal15').modal('toggle');
-  });
-
- // AMARETTI LAZZARONI //
-  var marker = L.AwesomeMarkers.icon({
-    icon: 'glyphicon glyphicon-cutlery',
-    markerColor: 'green',
-    iconColor: 'white',
-    extraClasses: 'amaretti'
-  });
-
-  L.marker([45.6867005,8.9315245], {icon: marker}).addTo(map);
-  $('.amaretti').on('click', function toggleContent() {
-    $('#myModal17').modal('toggle');
-  });
-
-   // OLIO PLANETA //
-  var marker = L.AwesomeMarkers.icon({
-    icon: 'glyphicon glyphicon-cutlery',
-    markerColor: 'green',
-    iconColor: 'white',
-    extraClasses: 'olio'
-  });
-
-  L.marker([37.6042748,12.9660447], {icon: marker}).addTo(map);
-  $('.olio').on('click', function toggleContent() {
-    $('#myModal18').modal('toggle');
-  });
-
-
-
-// marker.on('mouseover', function() {
-//   var icon = marker._icon;
-//   $(icon).addClass('animated pulse');
-//   $(icon).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-//     $(icon).removeClass('animated pulse');
-//   });
-// });
-
-
-
-</script>
-          </div><!-- /MAP-->
+        _.map(markers_data, function(data, key){
+          var icon = L.AwesomeMarkers.icon({
+            icon: 'glyphicon '+data.icon.type,
+            markerColor: data.icon.color,
+            iconColor: 'white',
+            extraClasses: data.name
+          });
+          var marker = L.marker(data.coord, {icon: icon}).addTo(map);
+          marker.on('mouseover', function() {
+              console.log(data.name);
+          })
+          marker.on('click', function() {
+              console.log(data.modal);
+              $(data.modal).modal('toggle');
+          });
+          data.marker = marker;
+        });
+      </script>
+    </div><!-- /MAP-->
 
   </div>
 
@@ -447,7 +226,7 @@ var marker = L.AwesomeMarkers.icon({
       <div class="modal-body">
         <img src="images/winery/planeta.jpg" alt="Planeta Winery">
         <p class="caption">A bottle of Planeta Chardonny ready for tasting | Region: Sicilia</p>
-         
+
          <blockquote><p>Planeta represents not just one, but six ways of developing the territory, in six different settings between Sambuca di Sicilia and Menfi: there are six Planeta wine producing estates, each one with a specific research and development project.</p></blockquote>
       </div>
       <div class="modal-footer">
@@ -469,7 +248,7 @@ var marker = L.AwesomeMarkers.icon({
         <h4 class="modal-title" id="myModalLabel">BATASIOLO</h4>
       </div>
       <div class="modal-body">
-      <img src="images/winery/harvest.jpg" alt="Batasiolo Winery"> 
+      <img src="images/winery/harvest.jpg" alt="Batasiolo Winery">
         <p class="caption">Harvest time at the Batasiolo vineyards | Region: Piemonte</p>
 
         <blockquote><p>In the old local dialect the word 'beni' means a property or estate, and it is this idea of the unbreakable bond existing between the farmer and his vineyard which is encapsulated in the name 'Beni di Batasiolo.' </p></blockquote>
@@ -693,7 +472,7 @@ var marker = L.AwesomeMarkers.icon({
         <h4 class="modal-title" id="myModalLabel">CASALE DEL GIGLIO</h4>
       </div>
       <div class="modal-body">
-       <img src="images/winery/cantina.jpeg" alt="Casale del Giglio Winery"> 
+       <img src="images/winery/cantina.jpeg" alt="Casale del Giglio Winery">
         <p class="caption">The Casale Del Giglio cantina | Region: Lazio</p>
         <blockquote><p>Unlike other regions of Italy, this territory was still uncharted in viticultural terms when Berardino Santarelli and his son Antonio launched their research project in 1985. To date, Casale del Giglio has converted its 180 hectares selecting those grape varieties which have proved to interact best with the territory and produce the best quality wines.</p></blockquote>
       </div>
@@ -718,7 +497,7 @@ var marker = L.AwesomeMarkers.icon({
       </div>
       <div class="modal-body">
        <iframe width="100%" height="375" src="https://www.youtube.com/embed/PzZllyFrxEg" frameborder="0" allowfullscreen></iframe>
-       <p class="caption">A video made by Cecchi winery. Discover "the pure truth of wine" | Region: Toscana</p>    
+       <p class="caption">A video made by Cecchi winery. Discover "the pure truth of wine" | Region: Toscana</p>
         <blockquote><p> Since 1893 the Cecchi family & brand has been synonymous with viticulture, both in Italy and throughout the world. The history of the winery is a compelling story of a family articulated by passion, dedication to the land, and brilliant entrepreneurial spirit. </p></blockquote>
       </div>
       <div class="modal-footer">
