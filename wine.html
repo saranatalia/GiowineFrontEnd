@@ -133,7 +133,7 @@
         <br>
         <div id="the_foods" class="row font">
           <p data-name="amaretti" >Amaretti del Chiostro</p>
-          <p data-name="planeta" >Planeta Olive Oil</p>
+          <p data-name="olio" >Planeta Olive Oil</p>
           <p data-name="rustichella" >Rustichella Pasta Artigianale</p>
           <p data-name="ferrarelle" >Ferrarelle Mineral Water</p>
        </div><!--/endrow-->
@@ -206,14 +206,15 @@
 
         var overShow = function(name) {
           _.map(markers_data, function(data, k){
-            if (name != k)
+            if ((name != k) && (data.marker.options.opacity != 0.2))
               data.marker.setOpacity(0.2);
-            else
+            else if (data.marker.options.opacity != 1)
               data.marker.setOpacity(1);
           });
         };
         var allTheSame = function() {
           _.map(markers_data, function(data, k){
+            if (data.marker.options.opacity != 1)
               data.marker.setOpacity(1);
           });
         };
