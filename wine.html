@@ -173,7 +173,7 @@
           mazzei:       {name: 'mazzei',      coord:[43.435532,11.306296],    modal:'#myModal4',  icon:{type:'glyphicon-glass',   color:'darkpurple'}, marker:null},
           farnese:      {name: 'farnese',     coord:[42.352734,14.201073],    modal:'#myModal5',  icon:{type:'glyphicon-glass',   color:'darkpurple'}, marker:null},
           fantinel:     {name: 'fantinel',    coord:[46.106565,12.836795],    modal:'#myModal6',  icon:{type:'glyphicon-glass',   color:'darkpurple'}, marker:null},
-          riunite:      {name: 'riunite',     coord:[44.4355049,10.9767866],    modal:'#myModal7',  icon:{type:'glyphicon-glass',   color:'darkpurple'}, marker:null},
+          riunite:      {name: 'riunite',     coord:[44.4355049,10.9767866],  modal:'#myModal7',  icon:{type:'glyphicon-glass',   color:'darkpurple'}, marker:null},
           casanova:     {name: 'casanova',    coord:[43.057149,11.5219],      modal:'#myModal8',  icon:{type:'glyphicon-glass',   color:'darkpurple'}, marker:null},
           masi:         {name: 'masi',        coord:[45.523359,10.863783],    modal:'#myModal9',  icon:{type:'glyphicon-glass',   color:'darkpurple'}, marker:null},
           lazzaroni:    {name: 'lazzaroni',   coord:[45.4015845,9.059264],    modal:'#myModal10', icon:{type:'glyphicon-glass',   color:'darkpurple'}, marker:null},
@@ -227,6 +227,11 @@
           $(element).on('mouseover', function(e) {
              overShow(key);
           });
+
+          $(element).on('click', function() {
+            $(markers_data[key].modal).modal('toggle');
+          });
+
         });
         $('#the_wines p[data-name]').each(function(index, element) {
           var key = $(element).attr('data-name');
@@ -235,6 +240,10 @@
           $(element).on('mouseover', function(e) {
              overShow(key);
           });
+          $(element).on('click', function() {
+            $(markers_data[key].modal).modal('toggle');
+          });
+
         });
       </script>
     </div><!-- /MAP-->
