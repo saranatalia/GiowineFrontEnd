@@ -32,7 +32,12 @@ header {
 
 footer {
   margin: 20px;
-  text-align: center
+  text-align: center;
+  display: block;
+  background-color: black;
+  margin: 0;
+
+
 }
 
 footer p {
@@ -103,6 +108,9 @@ footer a {
 footer a:hover {
   color: black !important;
 }
+
+
+
 /*-----------------------------------------------------------------------------
 =NAVBAR
 -----------------------------------------------------------------------------*/
@@ -290,9 +298,38 @@ ul.nav a:focus {
 -----------------------------------------------------------------------------*/
 
 #contactbody .container {
+   background: rgba(141,32,54,0.9);
+  color: rgb(228,228,197);
+  padding-left: 30px;
+  border-radius: 10px;
+
+}
+
+#contactbody .container hr {
+  border-color: rgb(228,228,197);
+  margin-top: 10px;
+
+}
+
+#contactbody .panel-body {
   background: rgba(141,32,54,0.9);
   color: rgb(228,228,197);
-  border-radius: 10px;
+  padding-left: 30px;
+}
+
+#contactbody .panel {
+  border: rgba(141,32,54,0.9);
+}
+
+#contactbody .panel-heading {
+  background: rgb(141,32,54);
+  color: rgb(228,228,197);
+  padding-left: 30px;
+}
+
+#contactbody .panel-footer {
+  background: rgb(141,32,54);
+  color: rgb(228,228,197);
   padding-left: 30px;
 }
 
@@ -361,6 +398,13 @@ transition: all 0.3s ease-out;
   background-color: red;
 }
 
+.team {
+  margin: 0px 30px;
+}
+
+.team p {
+  text-decoration: bold;
+}
 
 /*-----------------------------------------------------------------------------
 =MODAL
@@ -381,8 +425,11 @@ transition: all 0.3s ease-out;
 .modal-title {
   font-weight: bold;
 }
+.modal-body img.center1 {
+  margin: 0 auto;
+}
 
-.modal-body img {
+.modal-body img.full {
   width: 100%;
   padding-bottom: 15px;
 
@@ -411,6 +458,13 @@ transition: all 0.3s ease-out;
   font-style: italic;
 }
 
+#the_wines p:hover {
+  color: black;
+}
+
+#the_foods p:hover {
+  text-decoration: underline;
+}
 
 /*-----------------------------------------------------------------------------
 =DIVS
@@ -431,4 +485,12 @@ transition: all 0.3s ease-out;
 .box {
   background: rgb(228,228,197);
   border: 2px solid rgba(141,32,54, 0.9);
+}
+
+.panel-footer .main_office {
+  display: block;
+}
+
+.panel-footer .other_offices {
+  display: block;
 }
