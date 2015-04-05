@@ -6,7 +6,7 @@
 body {
   color: rgba(141,32,54, 0.9);
   /*background: rgb(228,228,197);*/
-  background: url('../images/bg/3.jpg'); /* add a fallback color of #d6d6d6 */
+  background: tan; /* add a fallback color of #d6d6d6 */
   background-repeat: repeat-y;
   background-position: -50px -155px;
   padding-top: 50px;
@@ -34,7 +34,7 @@ footer {
   margin: 20px;
   text-align: center;
   display: block;
-  background-color: black;
+
   margin: 0;
 
 
@@ -63,7 +63,7 @@ h3 {
   margin-bottom: 5px;
   margin-top: -10px;
   margin-right: 0px;
-  border-color: rgb(228,228,197)
+  
 }
 
 hr {
@@ -111,6 +111,7 @@ footer a:hover {
 
 
 
+
 /*-----------------------------------------------------------------------------
 =NAVBAR
 -----------------------------------------------------------------------------*/
@@ -127,11 +128,12 @@ footer a:hover {
 
 .navbar-default .navbar-nav > li > a {
   color: rgb(228,228,197);
+  
 }
 
 .navbar-default .navbar-nav > li.active > a {
   background: inherit !important;
-  color: black !important;
+  text-decoration: underline !important;
 }
 
 
@@ -203,9 +205,7 @@ ul.nav a:focus {
 }
 
 .blurb {
-  background: rgba(141,32,54,0.9);
-  color: rgb(228,228,197) !important;
-  border-radius: 10px;
+ 
   padding: 15px;
 }
 
@@ -227,7 +227,7 @@ ul.nav a:focus {
 }
 
 .jumbotron {
-  background: none;
+  background: white;
   margin-top: -50px;
 
 }
