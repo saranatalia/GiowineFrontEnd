@@ -4,9 +4,9 @@
 
 
 body {
-  color: rgba(141,32,54, 0.9);
+  color: black;
   /*background: rgb(228,228,197);*/
-  background: tan; /* add a fallback color of #d6d6d6 */
+  background: lightgrey; /* add a fallback color of #d6d6d6 */
   background-repeat: repeat-y;
   background-position: -50px -155px;
   padding-top: 50px;
@@ -57,7 +57,10 @@ h3 {
   border-radius: 100px;
 }
 
-
+h2 {
+  font-family: 'Cinzel';
+  text-align: center;
+}
 
 .blurb hr {
   margin-bottom: 5px;
@@ -69,7 +72,7 @@ h3 {
 hr {
   margin-bottom: 10px;
   margin-top: -5px;
-  border-color: rgba(141,32,54, 0.9);
+  border-color: black;
   margin-right: 100px;
 }
 
@@ -96,10 +99,10 @@ a:focus {
  text-decoration: none;
 }
 
-.carousel {
+/*.carousel {
   border-top: 10px solid rgba(141,32,54, 0.9);
   border-bottom: 10px solid rgba(141,32,54, 0.9) ;
-}
+}*/
 
 footer a {
   color: rgba(141,32,54, 0.9) !important;
@@ -127,7 +130,7 @@ footer a:hover {
 
 
 .navbar-default .navbar-nav > li > a {
-  color: rgb(228,228,197);
+  color: white;
   
 }
 
@@ -276,6 +279,7 @@ ul.nav a:focus {
   padding-top: 15px;
   padding-bottom: 15px;
   padding-left: 15px;
+  color: white;
 }
 
 #brand {
@@ -292,6 +296,9 @@ ul.nav a:focus {
   cursor: pointer;
 }
 
+#territory {
+  font-family: 'Cinzel';
+}
 
 /*-----------------------------------------------------------------------------
 =CONTACT PAGE

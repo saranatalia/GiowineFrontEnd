@@ -39,13 +39,7 @@
           </button>
 
           <ul class="nav navbar-nav navbar-left">
-            <li>
-              <a class="navbar-brand" href="index.html" id="brand">
-                <!-- Not working yet, so we just write the name until we have a matching image -->
-                <!-- <img src="images/giobrand.jpg"> -->
-                GioWine
-              </a>
-            </li>
+           <li class="logo"><a class="navbar-brand" href="index.html"><img src="images/vrais_logo.png"></a></li>
             <li id="italianlink">
               The Italian link to the Americas <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
             </li>
@@ -78,7 +72,7 @@
 <div class="jumbotron">
     <div class="container center">
 
-      <h1 class="bold">Welcome to GioWine</h1>
+      <h2>GioWine</h2>
       <h4 class="bold">The Italian link to the Americas</h4>
 
       </div>
@@ -135,7 +129,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="container">
-                <h3>where</h3>
+                <h2>where</h2>
                 <hr>
                 <!-- MAP-->
                 <div id="map">
@@ -152,10 +146,10 @@
                       zoomControl: false
                     });
 
+var Thunderforest_Outdoors = L.tileLayer('http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 
-                    var Stamen_Watercolor = L.tileLayer('http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png', {
-                      attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-                      subdomains: 'abcd',
+
                       minZoom: 1,
                       maxZoom: 16
                     }).addTo(map);
@@ -207,7 +201,7 @@ marker.bindPopup("Main Office <br> San Diego, California USA").openPopup();
 
 <div class="col-md-6">
   <div class="container">
-    <h3>about</h3>
+    <h2>about</h2>
     <hr>
     <div class="content">
       <p>GIOWINE was founded in 2000 by Giovanni Cardullo as an International Consulting Firm that specializes in representing fine Italian products. With offices in X countries, we have on-site representatives with networks and experience in international markets across the American continents.</p>
@@ -252,7 +246,7 @@ marker.bindPopup("Main Office <br> San Diego, California USA").openPopup();
 
 
 <div class="container">
-  <h3>our partners</h3>
+  <h2>our partners</h2>
   <hr>
   <div class="partners" id="close">
       <div class="col-sm-3 col-xs-6">
