@@ -253,13 +253,18 @@ ul.nav a:focus {
 }
 
 #map {
-  height: 430px;
+  height: 500px;
   width: 100%;
   margin-bottom: 15px;
   color: rgba(141,32,54, 0.9);
 }
 
 #map2 {
+  height: 665px;
+  width: 600px;
+}
+
+#map3 {
   height: 665px;
   width: 600px;
 }

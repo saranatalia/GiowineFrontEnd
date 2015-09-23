@@ -12,6 +12,9 @@
      <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
      <link href='http://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet' type='text/css'>
      <link href="css/bootstrap.css" rel="stylesheet">
+      <link rel="stylesheet" href="css/leaflet.awesome-markers.css">
+     <script src="js/leaflet.awesome-markers.js"></script>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
      <link href="css/main.css" rel="stylesheet">
      
      
@@ -65,6 +68,76 @@
     </nav>
   
  </header>
+
+
+ <!-- MAP-->
+                <div id="map">
+                  <script>
+                    var map = L.map('map', {
+                      center: [46.2157467,2.2096957],
+                      zoom: 0,
+                      minZoom: 5,
+                      maxZoom: 5,
+                      scrollWheelZoom: false,
+                      doubleClickZoom: false,
+                      dragging: false,
+                      touchZoom: false,
+                      zoomControl: false
+                    });
+
+var Thunderforest_Outdoors = L.tileLayer('http://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+
+
+                      minZoom: 1,
+                      maxZoom: 16
+                    }).addTo(map);
+
+
+                 
+// marker.bindPopup('<p>Hello world!<br />This is a nice popup.</p>');
+// Alert code:
+//marker.on('click', function() {
+//alert(1);
+//});
+
+
+
+var marker = L.marker([44.8423155,-0.5813319]);
+marker.addTo(map);
+marker.bindPopup("Bordeaux").openPopup();
+
+var marker = L.marker([44.456522,1.4390129]);
+marker.addTo(map);
+marker.bindPopup("Cahors").openPopup();
+
+var marker = L.marker([48.976054, 4.382627]);
+marker.addTo(map);
+marker.bindPopup("Champagne").openPopup();
+
+var marker = L.marker([47.2780655,4.1823779]);
+marker.addTo(map);
+marker.bindPopup("Burgundy").openPopup();
+
+var marker = L.marker([44.0758227,4.6704557]);
+marker.addTo(map);
+marker.bindPopup("Rhone Valley").openPopup();
+
+
+
+// marker.on('mouseover', function() {
+//   var icon = marker._icon;
+//   $(icon).addClass('animated pulse');
+//   $(icon).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+//     $(icon).removeClass('animated pulse');
+//   });
+// });
+</script>
+</div><!-- /MAP-->
+
+
+
+
 
 
 
